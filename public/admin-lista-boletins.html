@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Boletins</title>
+    <link rel="stylesheet" href="/css/style.css"> <!-- Seu arquivo de estilos -->
+</head>
+<body>
+    <h1>Lista de Boletins Inseridos</h1>
+
+    <!-- Filtros -->
+    <label for="filtro">Filtrar por:</label>
+    <select id="filtro">
+        <option value="todos">Todos</option>
+        <option value="hoje">Hoje</option>
+        <option value="semana">Última Semana</option>
+        <option value="mes">Este Mês</option>
+        <option value="ano">Este Ano</option>
+        <option value="periodo">Período Personalizado</option>
+    </select>
+
+    <!-- Se escolher período personalizado -->
+    <div id="periodo-personalizado" style="display: none;">
+        <label for="startDate">Data de Início:</label>
+        <input type="date" id="startDate">
+        <label for="endDate">Data de Fim:</label>
+        <input type="date" id="endDate">
+    </div>
+
+    <button id="buscarBoletins">Buscar</button>
+
+    <!-- Tabela de Boletins -->
+    <table id="tabelaBoletins">
+        <thead>
+            <tr>
+                <th>Número do Boletim</th>
+                <th>CPF</th>
+                <th>Link do PDF</th>
+                <th>Data/Hora de Inserção</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Boletins serão carregados aqui -->
+        </tbody>
+    </table>
+
+    <script>
+        document.getElementById('filtro').addEventListener('change', function() {
+            const filtro = this.value;
+            const periodo = document.getElementById('periodo-personalizado');
+            if (filtro === 'periodo') {
+                periodo.style.display = 'block';
+            } else {
+                periodo.style.display = 'none';
+            }
+        });
+
+        document.getElementById('buscarBoletins').addEventListener('click', function() {
+            const filtro = document.getElementById('filtro').value;
+            let url = `/admin/lista-boletins?filtro=${filtro}`;
+
+            if (filtro === 'periodo') {
+                const startDate = document.getElementById('startDate').value;
+                const endDate = document.getElementById('endDate').value;
+                url += `&startDate=${startDate}&endDate=${endDate}`;
+            }
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const tabela = document.querySelector('#tabelaBoletins tbody');
+                    tabela.innerHTML = '';
+
+                    data.forEach(boletim => {
+                        const row = `
+                            <tr>
+                                <td>${boletim.numero_boletim}</td>
+                                <td>${boletim.cpf}</td>
+                                <td><a href="${boletim.pdf_link}" target="_blank">Ver PDF</a></td>
+                                <td>${new Date(boletim.created_at).toLocaleString()}</td>
+                            </tr>
+                        `;
+                        tabela.innerHTML += row;
+                    });
+                })
+                .catch(error => console.error('Erro ao buscar boletins:', error));
+        });
+    </script>
+</body>
+</html>

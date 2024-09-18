@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Administração</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #007bff, #00c6ff);
+            color: white;
+        }
+
+        .header {
+            background-color: #0056b3;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+
+        .admin-panel {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .admin-panel h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+            margin-bottom: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .btn:active {
+            background-color: #003d80;
+        }
+
+        .logout-btn {
+            background-color: #ff4b5c;
+        }
+
+        .logout-btn:hover {
+            background-color: #e43a4d;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Painel de Administração</h1>
+    </div>
+
+    <div class="container">
+        <div class="admin-panel">
+            <h2>Bem-vindo, Administrador</h2>
+
+            <!-- Botão funcional para inserir um novo boletim -->
+            <a href="/inserir-boletim" class="btn">Inserir Novo Boletim no Sistema</a>
+
+            <!-- Botão para ver a lista de boletins -->
+            <a href="/admin-lista-boletins.html" class="btn">Ver Lista de Boletins</a>
+
+            <!-- Botão de logout -->
+            <a href="/logout" class="btn logout-btn">Logout</a>
+        </div>
+    </div>
+
+</body>
+</html>
