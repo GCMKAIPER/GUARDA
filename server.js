@@ -5,6 +5,7 @@ const app = express();
 const bcrypt = require('bcryptjs');
 const session = require('express-session');
 const port = 3000;
+const path = require('path');
 
 
 // Configura o body-parser para processar os dados enviados pelo formulário
