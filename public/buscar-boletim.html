@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Boletim</title>
+    <style>
+        /* Estilo básico semelhante ao formulário anterior */
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Buscar Boletim</h2>
+<form action="/buscar-boletim" method="POST">
+    <label for="numeroBoletim">Número do Boletim</label>
+    <input type="text" id="numeroBoletim" name="numeroBoletim" placeholder="Digite o número do boletim" required>
+
+    <label for="cpf">CPF</label>
+    <input type="text" id="cpf" name="cpf" placeholder="Digite o CPF" required>
+
+    <button type="submit">Buscar Boletim</button>
+</form>
+</div>
+
+</body>
+</html>
