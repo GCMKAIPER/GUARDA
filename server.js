@@ -144,7 +144,7 @@ app.post('/inserir-boletim', (req, res) => {
 
 // Rota para exibir o formulário de busca
 app.get('/buscar-boletim', (req, res) => {
-    res.sendFile(__dirname + '/buscar-boletim.html'); // Caminho correto do HTML
+    res.sendFile(path.join(__dirname, 'public', 'buscar-boletim.html')); // Caminho correto do HTML
 });
 
 // Rota para processar a busca de boletim
