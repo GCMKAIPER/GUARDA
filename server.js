@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Configura a pasta pública para servir arquivos estáticos
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Configura a conexão com o banco de dados MySQL
 const connection = mysql.createConnection({
